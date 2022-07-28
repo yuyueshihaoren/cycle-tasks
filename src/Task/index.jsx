@@ -1,17 +1,29 @@
 import React from "react";
+import "./index.css";
 
-const Task = ({ title, description, lastCompletionDate, priority }) => {
+const LeftPanel = (props) => {
+  return <div className="task-left-panel">{props.children}</div>;
+};
+
+const MainBody = (props) => {
+  return <div className="task-main-body">{props.children}</div>;
+};
+
+const Task = ({ period, lastCompletionDate, priority, title, description }) => {
   return (
     <div className="task">
-      <span className="task-title">{title ?? "Title"}</span>
-      <span className="task-description">{description ?? "Description"}</span>
-      <span className="task-last-completion-date">
-        {lastCompletionDate ?? "Last completion date"}
-      </span>
-      <span className="task-priority">{priority ?? "Priority"}</span>
-      <button type="button" className="task-done">
-        DONE
-      </button>
+      <LeftPanel>
+        <span className="task-period">{period ?? "Period"}</span>
+        <span>{lastCompletionDate ?? "Last completion date"}</span>
+        <span>{priority ?? "Priority"}</span>
+        <button type="button" className="task-done">
+          DONE
+        </button>
+      </LeftPanel>
+      <MainBody>
+        <span className="task-title">{title ?? "Title"}</span>
+        <span className="task-description">{description ?? "Description"}</span>
+      </MainBody>
     </div>
   );
 };
